@@ -3,16 +3,17 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import UserForm
 
 class UserFormView(View):
     form_class = UserForm
-    tamplate_name = 'register/register.html'
+    template_name = 'register/register_form.html'
 
     # display blank form
     def get(self, request):
         form = self.form_class(None)
-        return render(request, self.tamplate_name, {'form': form})
+        return render(request, self.template_name, {'form': form})
 
     # process form data
     def post(self, request):
